@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseUrl, getUsersUrl, loginUrl, registerUrl } from './connectionStrings';
+import { baseUrl, getUserUrl, getUsersUrl, loginUrl, logoutUrl, registerUrl } from './connectionStrings';
 import { LoginDTO, UserDTO } from '../Entity/interfaces/RegLogInt';
 
 export const getUsers = () => {
@@ -19,8 +19,24 @@ export const getUsers = () => {
   };
   
  
-  export const loginUser = async (loginData: LoginDTO) => {
+  export const loginUser = (loginData: LoginDTO) => {
     return axios.post(baseUrl + loginUrl, loginData)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  };
+
+  export const logout = () => {
+    return axios.post(baseUrl + logoutUrl)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  };
+
+  export const getUser = (userId: number) => {
+    return axios.get(baseUrl + getUserUrl(userId))
       .then(response => response.data)
       .catch(error => {
         throw error;
