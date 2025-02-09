@@ -62,6 +62,8 @@ const LoginRegister: React.FC = () => {
 
       <form onSubmit={handleSubmit}>
         {isRegistering && (
+          <div className="input-group">
+          <label>Ім'я користувача</label>
           <input
             type="text"
             name="username"
@@ -70,7 +72,10 @@ const LoginRegister: React.FC = () => {
             onChange={handleChange}
             required
           />
+          </div>
         )}
+        <div className="input-group">
+        <label>Email</label>
         <input
           type="email"
           name="email"
@@ -79,6 +84,9 @@ const LoginRegister: React.FC = () => {
           onChange={handleChange}
           required
         />
+        </div>
+        <div className="input-group">
+        <label>Пароль</label>
         <input
           type="password"
           name="password"
@@ -87,7 +95,10 @@ const LoginRegister: React.FC = () => {
           onChange={handleChange}
           required
         />
+        </div>
         {isRegistering && (
+          <div className="input-group">
+          <label>Підтвердження пароля</label>
           <input
             type="password"
             name="confirmPassword"
@@ -96,6 +107,7 @@ const LoginRegister: React.FC = () => {
             onChange={handleConfirmPasswordChange}
             required
           />
+          </div>
         )}
         <button type="submit">
           {isRegistering ? "Зареєструватися" : "Увійти"}
