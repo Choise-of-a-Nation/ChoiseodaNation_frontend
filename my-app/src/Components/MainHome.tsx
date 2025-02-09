@@ -1,7 +1,17 @@
+import { useEffect, useState } from 'react';
 import './MainHome.css'
 
 function MainHome()
 {
+    const handleButtonClick = () => {
+        const token = localStorage.getItem("accessToken"); 
+        if (token) {
+          window.location.href = "https://choiseofanationgameweb.vercel.app/";
+        } else {
+          window.location.href = "/sign"; 
+        }
+      };
+
     return(
         <div className='main'>
             <div className='vstup'>
@@ -53,7 +63,7 @@ function MainHome()
                     <h2>Наш проект!</h2>
                     <p>Якщо ви цікавитеся історією або прагнете вплинути на її хід, наш проєкт саме для вас! Тут ви зможете заглибитися в події минулого, дізнатися більше про ключові моменти історії та навіть уявити, яким міг би бути альтернативний розвиток подій.</p>
                     <p>Приєднуйтеся до нас, досліджуйте історію разом із нами та станьте частиною спільноти, яка цінує знання та має сміливість змінювати майбутнє. Натискайте на посилання нижче та долучайтеся до проєкту!</p>
-                    <button>Детальніше</button>
+                    <button onClick={handleButtonClick}>Детальніше</button>
                 </div>
                 <div>
                     <img src='img/logo.png'/>
