@@ -19,11 +19,15 @@ function Header() {
         }
     };
 
+    const handleMain = () => {
+        navigate("/"); 
+    };
+
     return (
         <div className='header'>
-            <img src='img/logo.png' alt='logo' />
+            <img src='img/logo.png' alt='logo' onClick={handleMain}/>
 
-            <div className='zagolovku'>
+            <div className='zagolovku' onClick={handleMain}>
                 <h1>Choise of a Nation</h1>
                 <h1>Не знання історії - не звільняє від відповідальності</h1>
             </div>

@@ -27,32 +27,31 @@ const LoginRegister: React.FC = () => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
-
-    if (isRegistering) {
-      if ((formData as UserDTO).password !== confirmPassword) {
-        setError("Паролі не співпадають!");
-        return;
-      }
-    }
-
+  
     try {
       if (isRegistering) {
         const data = await registerUser(formData as UserDTO);
-        localStorage.setItem("accessToken", data.AccessToken);
-        localStorage.setItem("refreshToken", data.RefreshToken);
-        setSuccess("Реєстрація успішна! Тепер увійдіть у систему.");
         window.location.href = "/";
       } else {
         const data = await loginUser(formData as LoginDTO);
-        localStorage.setItem("accessToken", data.AccessToken);
-        localStorage.setItem("refreshToken", data.RefreshToken);
-        setSuccess("Вхід успішний! Ви авторизовані.");
-        window.location.href = "/";
+  
+        if (data.accessToken && data.refreshToken) {
+          console.log("✅ Tokens received:", data);
+  
+          localStorage.setItem("accessToken", data.accessToken);
+          localStorage.setItem("refreshToken", data.refreshToken);
+          
+          setSuccess("Вхід успішний! Ви авторизовані.");
+          window.location.href = "/";
+        } else {
+          throw new Error("❌ Сервер не повернув токени.");
+        }
       }
     } catch (err: any) {
       setError("Помилка: " + err.message);
     }
   };
+  
 
   return (
     <div className="auth-container">
