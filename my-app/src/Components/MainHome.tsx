@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
 import './MainHome.css'
+import { useNavigate } from 'react-router-dom';
 
 function MainHome()
 {
+    const navigate = useNavigate();
+    
     const handleButtonClick = () => {
         const token = localStorage.getItem("accessToken"); 
         if (token) {
@@ -11,6 +13,10 @@ function MainHome()
           window.location.href = "/sign"; 
         }
       };
+
+      const handleButtonClickNav = (page: string) => {
+        navigate(page);
+    };
 
     return(
         <div className='main'>
@@ -41,7 +47,7 @@ function MainHome()
                     <h2>Форум</h2>
                     <p>Хочете поділитися своїми думками, обговорити ідеї або поставити питання? Наш форум — це місце, де ви можете спілкуватися з іншими учасниками, ділитися досвідом та дізнаватися більше про наш проєкт.</p>
                     <p>Приєднуйтесь до обговорень та залишайте свої коментарі! Натискайте на посилання нижче, щоб перейти на форум.</p>
-                    <button>Детальніше</button>
+                    <button onClick={() => handleButtonClickNav("/forum")}>Детальніше</button>
                 </div>
                 <div>
                     <img src='img/forum-icon.png'/>
