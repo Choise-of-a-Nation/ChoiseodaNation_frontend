@@ -48,19 +48,22 @@ const Forum: React.FC = () => {
 
     return (
         <div className="forum-container">
+            <div className="top">
             <h1>Форум</h1>
             <Link to="/forum/new-topic">
                 <button>Створити нову тему</button>
             </Link>
+            </div>
 
             {loading ? (
                 <p>Завантаження тем...</p>
             ) : (
                 <ul>
                     {topics.map((topic) => (
-                        <li key={topic.id}>
-                            <Link to={`/forum/${topic.id}`}>{topic.title}</Link>
+                        <li key={topic.id} className="question">
+                            <h3>{topic.title}</h3>
                             <span>Автор: {topic.authorName} | {new Date(topic.createdAt).toLocaleDateString()}</span>
+                            <Link to={`/forum/${topic.id}`}><button>Перейти</button></Link>
                         </li>
                     ))}
                 </ul>

@@ -98,8 +98,8 @@ export const getTopicById = async (id: string) => {
         .catch(error => { throw error; });
 };
 
-export const createTopic = async (title: string, userId: string) => {
-    return axios.post(`${baseUrl}/forum/create-topic`, { title, userId })
+export const createTopic = async (title: string, userId: string, description: string) => {
+    return axios.post(`${baseUrl}/forum/create-topic`, { title, description, userId})
         .then(res => res.data)
         .catch(error => { throw error; });
 };

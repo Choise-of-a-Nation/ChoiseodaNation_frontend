@@ -18,6 +18,7 @@ interface Topic {
     userId: string;
     authorName?: string;
     createdAt: Date;
+    description: string;
 }
 
 const Topic: React.FC = () => {
@@ -104,8 +105,9 @@ const Topic: React.FC = () => {
                 <>
                     <h2>{topic.title}</h2>
                     <p>Автор: {topic.authorName} | {new Date(topic.createdAt).toLocaleString()}</p>
+                    <p>Опис: {topic.description}</p>
 
-                    <h3>Коментарі:</h3>
+                    <h2>Коментарі:</h2>
                     <ul>
                         {Array.isArray(comments) && comments.length > 0 ? (
                             comments.map((comment) => (

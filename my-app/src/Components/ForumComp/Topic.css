@@ -1,0 +1,23 @@
+.topic-container{
+    margin: 2%;
+    color: white;
+    font-family: 'MyFont';
+    background-color: #876939;
+    padding: 1%;
+    border-radius: 30px;
+}
+
+.topic-container h2{
+    font-size: 30px;
+}
+
+.topic-container p{
+    font-size: 20px;
+}
+
+.topic-container li{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -7,7 +7,7 @@
     color: white;
     font-family: 'MyFont';
     width: 100%;
-    max-width: 600px; 
+    max-width: 700px; 
 }
 
 .profile-container img {
@@ -35,7 +35,7 @@
     width: 100%;
 }
 
-label {
+.labels label {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -43,7 +43,7 @@ label {
     width: 100%;
 }
 
-label strong{
+.labels label strong{
     font-size: 30px;
 }
 
