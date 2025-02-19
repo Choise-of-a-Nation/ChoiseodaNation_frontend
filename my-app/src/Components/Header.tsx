@@ -19,13 +19,17 @@ function Header() {
         }
     };
 
+    const handleButtonClickNav = (page: string) => {
+        navigate(page);
+    };
+
     const handleMain = () => {
         navigate("/"); 
     };
 
     return (
         <div className='header'>
-            <img src='img/logo.png' alt='logo' onClick={handleMain}/>
+            <img src='/img/logo.png' alt='logo' onClick={handleMain}/>
 
             <div className='zagolovku' onClick={handleMain}>
                 <h1>Choise of a Nation</h1>
@@ -34,7 +38,7 @@ function Header() {
 
             <div className='dropdowns'>
                 <button>Новини</button>
-                <button>Форум</button>
+                <button onClick={() => handleButtonClickNav("/forum")}>Форум</button>
                 <button>Історична довідка</button>
                 <button onClick={handleButtonClick}>
                     {isAuthenticated ? "Профіль" : "Увійти"}

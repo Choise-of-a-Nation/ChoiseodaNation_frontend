@@ -85,3 +85,37 @@ export const getUsers = () => {
   
     return response.data.imageUrl;
   };
+
+  export const getTopics = async () => {
+    return axios.get(`${baseUrl}/forum/get-topics`)
+        .then(res => res.data)
+        .catch(error => { throw error; });
+};
+
+export const getTopicById = async (id: string) => {
+    return axios.get(`${baseUrl}/forum/get-topic/${id}`)
+        .then(res => res.data)
+        .catch(error => { throw error; });
+};
+
+export const createTopic = async (title: string, userId: string, description: string) => {
+    return axios.post(`${baseUrl}/forum/create-topic`, { title, description, userId})
+        .then(res => res.data)
+        .catch(error => { throw error; });
+};
+
+export const addComment = async (topicId: string, userId: string, content: string) => {
+    return axios.post(`${baseUrl}/forum/add-comment`, { topicId, userId, content })
+        .then(res => res.data)
+        .catch(error => { throw error; });
+};
+
+
+export const getCommentsByTopicId = async (topicId: string) => {
+  return axios.get(`${baseUrl}/forum/get-comments/${topicId}`)
+      .then(response => response.data)
+      .catch(error => {
+          console.error("Помилка завантаження коментарів:", error);
+          throw error;
+      });
+};

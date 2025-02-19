@@ -1,0 +1,49 @@
+.new-topic-container{
+    margin: 2%;
+    color: white;
+    font-family: 'MyFont';
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin-bottom: 40px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    width: 30%;
+    text-align: center;
+}
+
+.form-group input, textarea {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.new-topic-container button
+{
+    margin-left: auto;
+}
+
+.group{
+    background-color: #876939;
+    border-radius: 30px;
+    padding: 2%;
+    margin-bottom: 1%;
+}

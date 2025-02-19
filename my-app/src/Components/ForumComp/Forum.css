@@ -1,0 +1,35 @@
+.forum-container{
+    margin: 2%;
+    color: white;
+    font-family: 'MyFont';
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+}
+
+.question{
+    background-color: #876939;
+    padding: 2%;
+    border-radius: 30px;
+    margin: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.question h3{
+    font-size: 30px;
+}
+
+.question span{
+    font-size: 20px;
+}
+
+ul{
+    list-style: none;
+}
