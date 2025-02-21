@@ -1,16 +1,16 @@
 import Footer from '../Components/Footer';
-import Forum from '../Components/ForumComp/Forum';
 import Header from '../Components/Header';
+import New from '../Components/NewsComp/New';
 
-function ForumPage() {
+function NewPage() {
 
     return (
         <div>
             <Header/>
-            <Forum/>
+            <New/>
             <Footer/>
         </div>
     );
 }
 
-export default ForumPage;
+export default NewPage;
