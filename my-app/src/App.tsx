@@ -8,6 +8,8 @@ import TopicPage from './Pages/TopicPage';
 import NewTopicPage from './Pages/NewTopicPage';
 import NewsPage from './Pages/NewsPage';
 import NewPage from './Pages/NewPage';
+import WikiPage from './Pages/WikiPage';
+import WikPage from './Pages/WikPage';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/forum/:topicId" element={<TopicPage />} />
         <Route path='/news' element={<NewsPage/>}/>
         <Route path='/news/:newId' element={<NewPage/>}/>
+        <Route path='/history' element={<WikiPage/>}/>
+        <Route path='/history/:wikId' element={<WikPage/>}/>
       </Routes>
     </Router>
   );

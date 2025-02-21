@@ -39,7 +39,7 @@ function Header() {
             <div className='dropdowns'>
                 <button onClick={() => handleButtonClickNav("/news")}>Новини</button>
                 <button onClick={() => handleButtonClickNav("/forum")}>Форум</button>
-                <button>Історична довідка</button>
+                <button onClick={() => handleButtonClickNav("/history")}>Історична довідка</button>
                 <button onClick={handleButtonClick}>
                     {isAuthenticated ? "Профіль" : "Увійти"}
                 </button>
