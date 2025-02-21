@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { baseUrl, createNewsUrl, getNewUrl, getNewsUrl, getUserUrl, getUsersUrl, loginUrl, logoutUrl, registerUrl, uploadAv } from './connectionStrings';
+import { baseUrl, createNewsUrl, createWikiUrl, getNewUrl, getNewsUrl, getUserUrl, getUsersUrl, getWikUrl, getWikiUrl, loginUrl, logoutUrl, registerUrl, uploadAv } from './connectionStrings';
 import { LoginDTO, UserDTO } from '../Entity/interfaces/RegLogInt';
 import { UpdateUserDTO } from '../Entity/interfaces/UpdateDTO';
 import { NewsDTO } from '../Entity/interfaces/NewsDTO';
+import { WikiDTO } from '../Entity/interfaces/WikiDTO';
 
 export const getUsers = () => {
     return axios.get(baseUrl + getUsersUrl)
@@ -139,6 +140,30 @@ export const createNews = (newsData: NewsDTO) => {
 
 export const getNew = (id: number) => {
   return axios.get(baseUrl + getNewUrl(id))
+    .then(response => response.data)
+    .catch(error => {
+      throw error;
+    });
+};
+
+export const getWiki = () => {
+  return axios.get(baseUrl + getWikiUrl)
+    .then(response => response.data)
+    .catch(error => {
+      throw error;
+    });
+};
+
+export const createWiki = (wikiData: WikiDTO) => {
+  return axios.post(baseUrl + createWikiUrl, wikiData)
+    .then(response => response.data)
+    .catch(error => {
+      throw error;
+    });
+};
+
+export const getWik = (id: number) => {
+  return axios.get(baseUrl + getWikUrl(id))
     .then(response => response.data)
     .catch(error => {
       throw error;
