@@ -1,0 +1,10 @@
+.news-container{
+    margin: 2%;
+    color: white;
+    font-family: 'MyFont';
+}
+
+.news-container img{
+    width: 30%;
+    height: 30%;
+}

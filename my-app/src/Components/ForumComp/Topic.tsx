@@ -105,7 +105,7 @@ const Topic: React.FC = () => {
                 <>
                     <h2>{topic.title}</h2>
                     <p>Автор: {topic.authorName} | {new Date(topic.createdAt).toLocaleString()}</p>
-                    <p>Опис: {topic.description}</p>
+                    <p>{topic.description}</p>
 
                     <h2>Коментарі:</h2>
                     <ul>

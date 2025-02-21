@@ -6,6 +6,8 @@ import Profile from './Pages/Profile';
 import ForumPage from './Pages/ForumPage';
 import TopicPage from './Pages/TopicPage';
 import NewTopicPage from './Pages/NewTopicPage';
+import NewsPage from './Pages/NewsPage';
+import NewPage from './Pages/NewPage';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/forum" element={<ForumPage />} />
         <Route path="/forum/new-topic" element={<NewTopicPage />} />
         <Route path="/forum/:topicId" element={<TopicPage />} />
+        <Route path='/news' element={<NewsPage/>}/>
+        <Route path='/news/:newId' element={<NewPage/>}/>
       </Routes>
     </Router>
   );

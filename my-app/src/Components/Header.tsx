@@ -37,7 +37,7 @@ function Header() {
             </div>
 
             <div className='dropdowns'>
-                <button>Новини</button>
+                <button onClick={() => handleButtonClickNav("/news")}>Новини</button>
                 <button onClick={() => handleButtonClickNav("/forum")}>Форум</button>
                 <button>Історична довідка</button>
                 <button onClick={handleButtonClick}>

@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { baseUrl, getUserUrl, getUsersUrl, loginUrl, logoutUrl, registerUrl, uploadAv } from './connectionStrings';
+import { baseUrl, createNewsUrl, getNewUrl, getNewsUrl, getUserUrl, getUsersUrl, loginUrl, logoutUrl, registerUrl, uploadAv } from './connectionStrings';
 import { LoginDTO, UserDTO } from '../Entity/interfaces/RegLogInt';
 import { UpdateUserDTO } from '../Entity/interfaces/UpdateDTO';
+import { NewsDTO } from '../Entity/interfaces/NewsDTO';
 
 export const getUsers = () => {
     return axios.get(baseUrl + getUsersUrl)
@@ -118,4 +119,28 @@ export const getCommentsByTopicId = async (topicId: string) => {
           console.error("Помилка завантаження коментарів:", error);
           throw error;
       });
+};
+
+export const getNews = () => {
+  return axios.get(baseUrl + getNewsUrl)
+    .then(response => response.data)
+    .catch(error => {
+      throw error;
+    });
+};
+
+export const createNews = (newsData: NewsDTO) => {
+  return axios.post(baseUrl + createNewsUrl, newsData)
+    .then(response => response.data)
+    .catch(error => {
+      throw error;
+    });
+};
+
+export const getNew = (id: number) => {
+  return axios.get(baseUrl + getNewUrl(id))
+    .then(response => response.data)
+    .catch(error => {
+      throw error;
+    });
 };
