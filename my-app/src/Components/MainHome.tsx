@@ -8,7 +8,7 @@ function MainHome()
     const handleButtonClick = () => {
         const token = localStorage.getItem("accessToken"); 
         if (token) {
-          window.location.href = "https://choiseofanationgameweb.vercel.app/";
+          window.location.href = "choise-of-a-nation-game-web.vercel.app";
         } else {
           window.location.href = "/sign"; 
         }
