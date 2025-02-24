@@ -37,7 +37,7 @@ function WikiComp()
                 <ul>
                     {wiki.map((wik) => (
                         <li key={wik.id} className="question">
-                            <img src={wik?.url || "/img/default-avatar.png"} alt="News Avatar"/>
+                            <img src={wik?.url || "/img/default-avatar.png"} alt="News Avatar" className='.new-img'/>
                             <h3>{wik.title}</h3>
                             <Link to={`/history/${wik.id}`}><button>Перейти</button></Link>
                         </li>

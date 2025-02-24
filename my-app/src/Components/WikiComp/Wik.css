@@ -19,3 +19,32 @@
     font-size: 30px;
     margin: 0.5%;
 }
+
+@media (max-width: 768px) {
+    .new-container img {
+        width: 100%;
+        float: none; 
+        display: block;
+        margin: 0 auto 10px auto;
+    }
+
+    .new-container p {
+        font-size: 18px;
+        text-align: justify; 
+    }
+
+    .new-container .desc {
+        font-size: 24px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .new-container p {
+        font-size: 16px;
+    }
+
+    .new-container .desc {
+        font-size: 22px;
+    }
+}

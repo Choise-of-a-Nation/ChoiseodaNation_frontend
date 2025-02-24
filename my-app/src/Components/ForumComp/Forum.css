@@ -33,3 +33,38 @@
 ul{
     list-style: none;
 }
+
+@media (max-width: 768px) {
+    .forum-container {
+        margin: 5%;
+    }
+
+    .question {
+        flex-direction: column; 
+        text-align: center;
+        gap: 10px; 
+        padding: 4%;
+    }
+    
+    .question h3 {
+        font-size: 24px;
+    }
+
+    .question span {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .forum-container {
+        margin: 3%;
+    }
+
+    .question h3 {
+        font-size: 20px;
+    }
+
+    .question span {
+        font-size: 16px;
+    }
+}
