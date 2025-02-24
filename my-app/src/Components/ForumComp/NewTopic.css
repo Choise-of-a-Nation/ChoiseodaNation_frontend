@@ -47,3 +47,51 @@ h2 {
     padding: 2%;
     margin-bottom: 1%;
 }
+
+@media (max-width: 768px) {
+    .new-topic-container {
+        margin: 5%;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .form-group label {
+        text-align: left;
+        width: 100%;
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .new-topic-container button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .new-topic-container {
+        margin: 3%;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    .form-group label {
+        font-size: 20px;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+        font-size: 14px;
+    }
+}

@@ -121,3 +121,54 @@ h2{
 .block-game img{
     width: 100%;
 }
+
+@media (max-width: 768px) {
+    .vstup h1 {
+        font-size: 40px; 
+    }
+
+    .vstup p,
+    .vstup ul {
+        font-size: 20px; 
+    }
+
+    .block-news,
+    .block-forum,
+    .block-history,
+    .block-game {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+    }
+
+    .block-game img {
+        width: 100%;
+    }
+
+    button {
+        width: 100%; 
+        font-size: 18px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vstup h1 {
+        font-size: 35px;
+    }
+
+    .vstup p,
+    .vstup ul {
+        font-size: 18px;
+    }
+
+    img {
+        width: 90%;
+    }
+
+    button {
+        width: 100%;
+        font-size: 16px;
+        padding: 8px;
+    }
+}
