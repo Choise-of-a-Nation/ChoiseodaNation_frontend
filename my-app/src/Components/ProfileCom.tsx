@@ -35,7 +35,7 @@ const ProfileCom = () => {
     };
 
     const handlePlay = () => {
-        window.location.href = "https://choiseofanationgameweb.vercel.app/";
+        window.location.href = "choise-of-a-nation-game-web.vercel.app";
     };
 
     const handleImageClick = () => {
