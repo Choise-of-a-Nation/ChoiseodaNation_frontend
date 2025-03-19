@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Topic.css";
-import { addComment, getTopicById, getUser, getCommentsByTopicId } from "../../ApiService/ApiService";
-import { getUserIdFromToken } from "../../Utilits/Auth";
+import { addComment, getTopicById, getUser, getCommentsByTopicId, deleteComment } from "../../ApiService/ApiService";
+import { getUserIdFromToken, getUserRoleFromToken } from "../../Utilits/Auth";
 
 interface Comment {
     id: string;
@@ -26,6 +26,7 @@ const Topic: React.FC = () => {
     const [topic, setTopic] = useState<Topic | null>(null);
     const [comments, setComments] = useState<Comment[]>([]);
     const [commentText, setCommentText] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const fetchTopic = async () => {
         if (!topicId) return;
@@ -80,6 +81,14 @@ const Topic: React.FC = () => {
         fetchComments();
     }, [topicId]);
 
+    useEffect(() => {
+        const checkAdminStatus = () => {
+            const userRole = getUserRoleFromToken();
+            setIsAdmin(userRole === 'Full');
+        };
+        checkAdminStatus();
+    }, []);
+
     const handleCommentSubmit = async () => {
         if (!commentText.trim()) return;
 
@@ -99,6 +108,15 @@ const Topic: React.FC = () => {
         }
     };
 
+    const handleDeleteComment = async (commentId: string) => {
+        try {
+            await deleteComment(commentId);
+            fetchComments();
+        } catch (error) {
+            console.error('Помилка при видаленні коментаря:', error);
+        }
+    };
+
     return (
         <div className="topic-container">
             {topic ? (
@@ -114,6 +132,14 @@ const Topic: React.FC = () => {
                                 <li key={comment.id || Math.random()}>
                                     <p><strong>{comment.authorName}:</strong> {comment.content}</p>
                                     <span>{new Date(comment.createdAt).toLocaleString()}</span>
+                                    {isAdmin && (
+                                        <button 
+                                            onClick={() => handleDeleteComment(comment.id)}
+                                            className="delete-comment-btn"
+                                        >
+                                            Видалити
+                                        </button>
+                                    )}
                                 </li>
                             ))
                             ) : (

@@ -1,0 +1,81 @@
+.hist-admin {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    font-family: 'MyFont';
+}
+
+h2 {
+    text-align: center;
+}
+
+.hist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.hist-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+.hist-form input,
+.hist-form textarea {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 5px;
+}
+
+.hist-form button {
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.hist-list {
+    list-style: none;
+    padding: 0;
+}
+
+.hist-item {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hist-content {
+    max-width: 70%;
+}
+
+.hist-image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.hist-item button {
+    background: red;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hist-item button:hover {
+    background: darkred;
+}

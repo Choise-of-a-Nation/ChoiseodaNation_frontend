@@ -1,0 +1,20 @@
+.admin-dashboard {
+    text-align: center;
+    font-family: 'MyFont';
+    color: white;
+}
+
+.admin-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.admin-sections a {
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
