@@ -1,5 +1,5 @@
 export class User{
-    id: number;
+    id: string;
     firstName: string;
     lastName: string;
     roleId: number;
@@ -7,15 +7,17 @@ export class User{
     username: string;
     email: string;
     phoneNumber: string;
+    password: string;
 
-    constructor(id: number, 
+    constructor(id: string, 
                 firstName: string, 
                 lastName: string, 
                 roleId: number, 
                 url: string, 
                 username: string, 
                 email: string, 
-                phoneNumber: string)
+                phoneNumber: string,
+                password: string)
     {
         this.id = id;
         this.firstName = firstName;
@@ -25,5 +27,6 @@ export class User{
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.password = password;
     }
 }

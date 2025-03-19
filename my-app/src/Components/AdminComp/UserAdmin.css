@@ -1,0 +1,57 @@
+.users-admin {
+    max-width: 900px;
+    margin: auto;
+    color: white;
+    font-family: "MyFont";
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.user-form input,
+.user-form select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.user-form button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.user-form button:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid white;
+    text-align: left;
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    cursor: pointer;
+}
