@@ -1,6 +1,7 @@
 export const baseUrl = "https://choiseofanation.tryasp.net/"
 export const getUsersUrl = "register/get-users"
 export const loginUrl = "register/login"
+export const googleLoginUrl = "register/google-login"
 export const registerUrl = "register/register"
 export const registerUrlAdmin = "register/register-admin"
 export const logoutUrl = "register/logout"

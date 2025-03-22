@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseUrl, createNewsUrl, createWikiUrl, deleteHistoryUrl, deleteNewsUrl, deleteTopicUrl, deleteUserUrl, getNewUrl, getNewsUrl, getUserUrl, getUsersUrl, getWikUrl, getWikiUrl, loginUrl, logoutUrl, registerUrl, registerUrlAdmin, uploadAv } from './connectionStrings';
+import { baseUrl, createNewsUrl, createWikiUrl, deleteHistoryUrl, deleteNewsUrl, deleteTopicUrl, deleteUserUrl, getNewUrl, getNewsUrl, getUserUrl, getUsersUrl, getWikUrl, getWikiUrl, loginUrl, logoutUrl, registerUrl, registerUrlAdmin, uploadAv, googleLoginUrl } from './connectionStrings';
 import { LoginDTO, UserDTO, UserDTOAdmin } from '../Entity/interfaces/RegLogInt';
 import { UpdateUserDTO, UpdateUserDTOAdmin } from '../Entity/interfaces/UpdateDTO';
 import { NewsDTO } from '../Entity/interfaces/NewsDTO';
@@ -225,4 +225,15 @@ export const deleteForum = (id: string) => {
     .catch(error => {
       throw error;
     });
+};
+
+export const loginWithGoogle = async (credential: string) => {
+  try {
+    const response = await axios.post(baseUrl + googleLoginUrl, { credential });
+    const parsedData = typeof response.data === "string" ? JSON.parse(response.data) : response.data;
+    return parsedData;
+  } catch (error) {
+    console.error("Google Login Error:", error);
+    throw error;
+  }
 };

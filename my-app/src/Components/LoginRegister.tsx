@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LoginDTO, UserDTO } from "../Entity/interfaces/RegLogInt";
-import { loginUser, registerUser } from "../ApiService/ApiService";
+import { loginUser, registerUser, loginWithGoogle } from "../ApiService/ApiService";
+import { GoogleLogin } from '@react-oauth/google';
 import "./LoginRegister.css";
 
 const LoginRegister: React.FC = () => {
@@ -36,7 +37,7 @@ const LoginRegister: React.FC = () => {
         const data = await loginUser(formData as LoginDTO);
   
         if (data.accessToken && data.refreshToken) {
-          console.log("✅ Tokens received:", data);
+          console.log("Tokens received:", data);
   
           localStorage.setItem("accessToken", data.accessToken);
           localStorage.setItem("refreshToken", data.refreshToken);
@@ -44,14 +45,31 @@ const LoginRegister: React.FC = () => {
           setSuccess("Вхід успішний! Ви авторизовані.");
           window.location.href = "/";
         } else {
-          throw new Error("❌ Сервер не повернув токени.");
+          throw new Error("Сервер не повернув токени.");
         }
       }
     } catch (err: any) {
       setError("Помилка: " + err.message);
     }
   };
-  
+
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    try {
+      const data = await loginWithGoogle(credentialResponse.credential);
+      if (data.accessToken && data.refreshToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        setSuccess("Вхід через Google успішний!");
+        window.location.href = "/";
+      }
+    } catch (err: any) {
+      setError("Помилка входу через Google: " + err.message);
+    }
+  };
+
+  const handleGoogleError = () => {
+    setError("Помилка входу через Google");
+  };
 
   return (
     <div className="auth-container">
@@ -112,6 +130,17 @@ const LoginRegister: React.FC = () => {
           {isRegistering ? "Зареєструватися" : "Увійти"}
         </button>
       </form>
+
+      {!isRegistering && (
+        <div className="google-login-container">
+          <p>Або увійдіть через Google:</p>
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap
+          />
+        </div>
+      )}
 
       <p>
         {isRegistering ? "Вже маєте акаунт?" : "Не маєте акаунту?"}{" "}
