@@ -1,4 +1,7 @@
+import React from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { authConfig } from './config/auth.config';
 import './App.css';
 import Home from './Pages/Home';
 import RegLog from './Pages/RegLog';
@@ -18,38 +21,40 @@ import ForumAdmin from './Components/AdminComp/ForumAdmin';
 import AdminRoute from './Components/AdminComp/AdminRoute';
 import Statistics from './Components/AdminComp/Statistics';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign" element={<RegLog />} />
-        <Route path="/profile" element={<Profile />} />
+    <GoogleOAuthProvider clientId={authConfig.googleClientId}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign" element={<RegLog />} />
+          <Route path="/profile" element={<Profile />} />
 
 
-        <Route path="/forum" element={<ForumPage />} />
-        <Route path="/forum/new-topic" element={<NewTopicPage />} />
-        <Route path="/forum/:topicId" element={<TopicPage />} />
+          <Route path="/forum" element={<ForumPage />} />
+          <Route path="/forum/new-topic" element={<NewTopicPage />} />
+          <Route path="/forum/:topicId" element={<TopicPage />} />
 
 
-        <Route path='/news' element={<NewsPage/>}/>
-        <Route path='/news/:newId' element={<NewPage/>}/>
+          <Route path='/news' element={<NewsPage/>}/>
+          <Route path='/news/:newId' element={<NewPage/>}/>
 
 
-        <Route path='/history' element={<WikiPage/>}/>
-        <Route path='/history/:wikId' element={<WikPage/>}/>
+          <Route path='/history' element={<WikiPage/>}/>
+          <Route path='/history/:wikId' element={<WikPage/>}/>
 
 
-        <Route path="/admin/*" element={<AdminRoute />}>
-          <Route index element={<AdminPage />} />
-          <Route path="users" element={<UserAdmin />} />
-          <Route path="news" element={<NewsAdmin />} />
-          <Route path='history' element={<HistoryAdmin/>}/>
-          <Route path="forum" element={<ForumAdmin />} />
-          <Route path="statisctic" element={<Statistics />} />
-        </Route>
-      </Routes>
-    </Router>
+          <Route path="/admin/*" element={<AdminRoute />}>
+            <Route index element={<AdminPage />} />
+            <Route path="users" element={<UserAdmin />} />
+            <Route path="news" element={<NewsAdmin />} />
+            <Route path='history' element={<HistoryAdmin/>}/>
+            <Route path="forum" element={<ForumAdmin />} />
+            <Route path="statisctic" element={<Statistics />} />
+          </Route>
+        </Routes>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
