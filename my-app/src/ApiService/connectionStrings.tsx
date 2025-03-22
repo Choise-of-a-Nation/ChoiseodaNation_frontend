@@ -1,4 +1,4 @@
-export const baseUrl = "http://choiseofanation.tryasp.net/"
+export const baseUrl = "https://choiseofanation.tryasp.net/"
 export const getUsersUrl = "register/get-users"
 export const loginUrl = "register/login"
 export const registerUrl = "register/register"
