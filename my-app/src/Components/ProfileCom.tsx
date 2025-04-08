@@ -35,7 +35,13 @@ const ProfileCom = () => {
     };
 
     const handlePlay = () => {
-        window.location.href = "https://choise-of-a-nation-game-web.vercel.app/";
+        const token = localStorage.getItem("accessToken");
+        if (token) {
+            const gameUrl = `https://choise-of-a-nation-game-web.vercel.app/?token=${encodeURIComponent(token)}`;
+            window.open(gameUrl, "_blank");
+        } else {
+            setMessage("Помилка: токен не знайдено");
+        }
     };
 
     const handleImageClick = () => {
