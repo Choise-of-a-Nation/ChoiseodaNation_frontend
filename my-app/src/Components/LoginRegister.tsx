@@ -32,7 +32,18 @@ const LoginRegister: React.FC = () => {
     try {
       if (isRegistering) {
         const data = await registerUser(formData as UserDTO);
-        window.location.href = "/";
+
+        if (data.accessToken && data.refreshToken) {
+          console.log("Tokens received:", data);
+  
+          localStorage.setItem("accessToken", data.accessToken);
+          localStorage.setItem("refreshToken", data.refreshToken);
+          
+          setSuccess("Реєстрація успішна! Ви авторизовані.");
+          window.location.href = "/";
+        } else {
+          throw new Error("Сервер не повернув токени.");
+        }
       } else {
         const data = await loginUser(formData as LoginDTO);
   
