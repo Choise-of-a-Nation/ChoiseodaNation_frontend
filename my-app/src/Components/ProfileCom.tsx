@@ -159,11 +159,15 @@ const ProfileCom = () => {
                         <label>
                             <strong>Телефон:</strong>
                             <input 
-                                type="text" 
+                                type="phoneNumber" 
                                 name="phoneNumber" 
                                 value={editedUser.phoneNumber || ""} 
                                 onChange={handleInputChange} 
                             />
+                        </label>
+                        <label>
+                            <strong>Кількість зіграних годин: </strong>
+                            <strong>{user?.playedHours || ""}</strong>
                         </label>
                     </div>
                 </div>

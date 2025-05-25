@@ -8,6 +8,7 @@ export class User{
     email: string;
     phoneNumber: string;
     password: string;
+    playedHours: number;
 
     constructor(id: string, 
                 firstName: string, 
@@ -17,7 +18,8 @@ export class User{
                 username: string, 
                 email: string, 
                 phoneNumber: string,
-                password: string)
+                password: string,
+                playedHours: number)
     {
         this.id = id;
         this.firstName = firstName;
@@ -28,5 +30,6 @@ export class User{
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.playedHours = playedHours;
     }
 }
