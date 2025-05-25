@@ -15,7 +15,8 @@ function UserAdmin() {
         roleId: 2,   
         url: "",      
         username: "",
-        password: ""
+        password: "",
+        playedHours: 0
     });
     
 
@@ -43,12 +44,12 @@ function UserAdmin() {
         }
         
         setEditingUser(null);
-        setFormData({ firstName: "", lastName: "", email: "", phoneNumber: "", roleId: 2, url: "", username: "", password: "" });
+        setFormData({ firstName: "", lastName: "", email: "", phoneNumber: "", roleId: 2, url: "", username: "", password: "", playedHours: 0 });
     };
 
     const handleEditUser = (user: User) => {
         setEditingUser(user);
-        setFormData({ firstName: user.firstName, lastName: user.lastName, email: user.email, phoneNumber: user.phoneNumber, roleId: user.roleId, url: user.url, username: user.username, password: user.password });
+        setFormData({ firstName: user.firstName, lastName: user.lastName, email: user.email, phoneNumber: user.phoneNumber, roleId: user.roleId, url: user.url, username: user.username, password: user.password, playedHours: user.playedHours });
     };
 
     const handleDeleteUser = async (id: string) => {
