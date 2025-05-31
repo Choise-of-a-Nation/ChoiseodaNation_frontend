@@ -17,3 +17,4 @@ export const deleteUserUrl = (id: string) => `register/delete-user/${id}`;
 export const deleteNewsUrl = (id: number) => `news/delete-news/${id}`;
 export const deleteHistoryUrl = (id: number) => `history/delete-history/${id}`;
 export const deleteTopicUrl = (id: string) => `forum/delete-topic/${id}`;
+export const getAchivsUrl = "achivs/get-achivs";
