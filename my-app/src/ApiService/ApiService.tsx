@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseUrl, createNewsUrl, createWikiUrl, deleteHistoryUrl, deleteNewsUrl, deleteTopicUrl, deleteUserUrl, getNewUrl, getNewsUrl, getUserUrl, getUsersUrl, getWikUrl, getWikiUrl, loginUrl, logoutUrl, registerUrl, registerUrlAdmin, uploadAv, googleLoginUrl } from './connectionStrings';
+import { baseUrl, createNewsUrl, createWikiUrl, deleteHistoryUrl, deleteNewsUrl, deleteTopicUrl, deleteUserUrl, getNewUrl, getNewsUrl, getUserUrl, getUsersUrl, getWikUrl, getWikiUrl, loginUrl, logoutUrl, registerUrl, registerUrlAdmin, uploadAv, googleLoginUrl, getAchivsUrl } from './connectionStrings';
 import { LoginDTO, UserDTO, UserDTOAdmin } from '../Entity/interfaces/RegLogInt';
 import { UpdateUserDTO, UpdateUserDTOAdmin } from '../Entity/interfaces/UpdateDTO';
 import { NewsDTO } from '../Entity/interfaces/NewsDTO';
@@ -7,6 +7,14 @@ import { WikiDTO } from '../Entity/interfaces/WikiDTO';
 
 export const getUsers = () => {
     return axios.get(baseUrl + getUsersUrl)
+      .then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
+  };
+
+  export const getAchivs = () => {
+    return axios.get(baseUrl + getAchivsUrl)
       .then(response => response.data)
       .catch(error => {
         throw error;

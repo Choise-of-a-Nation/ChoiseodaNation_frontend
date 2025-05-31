@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUser, logout, updateUser, changePassword, uploadPhoto } from "../ApiService/ApiService";
+import { getUser, logout, updateUser, changePassword, uploadPhoto, getAchivs } from "../ApiService/ApiService";
 import { User } from "../Entity/User";
+import { Achivments } from "../Entity/Achivment";
 import "./ProfileCom.css";
 import { getUserIdFromToken } from "../Utilits/Auth";
 import { UpdateUserDTO } from "../Entity/interfaces/UpdateDTO";
@@ -9,6 +10,7 @@ import { UpdateUserDTO } from "../Entity/interfaces/UpdateDTO";
 const ProfileCom = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
+    const [achivs, setAchivs] = useState<Achivments[]>([]);
     const [loading, setLoading] = useState(true);
     const userId = getUserIdFromToken();
     const [editedUser, setEditedUser] = useState<UpdateUserDTO | null>(null);
@@ -29,6 +31,15 @@ const ProfileCom = () => {
                 .finally(() => setLoading(false));
         }
     }, [userId]);
+
+    useEffect(() => {
+        getAchivs()
+            .then((data) => {
+                setAchivs(data);
+            })
+            .catch((err) => console.error(err))
+            .finally(() => setLoading(false));
+    }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditedUser(prev => prev ? { ...prev, [e.target.name]: e.target.value } : null);
@@ -167,8 +178,23 @@ const ProfileCom = () => {
                         </label>
                         <label>
                             <strong>Кількість зіграних годин: </strong>
-                            <strong>{user?.playedHours || ""}</strong>
+                            <strong>{user ? (user.playedHours / 3600 / 3600 / 60).toFixed(1) : "0"} год.</strong>
                         </label>
+
+                        {user && achivs.length > 0 && (
+                            <div className="achievements">
+                                <h2>Досягнення</h2>
+                                <ul>
+                                    {achivs
+                                        .filter(achiv => achiv.userId === user.id)
+                                        .map((achiv, idx) => (
+                                            <li key={idx}>
+                                                <strong>{achiv.name}</strong>: {achiv.description}
+                                            </li>
+                                        ))}
+                                </ul>
+                            </div>
+                        )}
                     </div>
                 </div>
             ) : (
