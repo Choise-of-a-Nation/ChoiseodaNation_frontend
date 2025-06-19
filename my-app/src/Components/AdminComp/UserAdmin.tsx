@@ -7,6 +7,8 @@ import { UserDTO, UserDTOAdmin } from "../../Entity/interfaces/RegLogInt";
 function UserAdmin() {
     const [users, setUsers] = useState<User[]>([]);
     const [editingUser, setEditingUser] = useState<User | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
     const [formData, setFormData] = useState<Omit<User, "id">>({
         firstName: "",
         lastName: "",
@@ -28,8 +30,45 @@ function UserAdmin() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const validateEmail = (email: string) => {
+        return /\S+@\S+\.\S+/.test(email);
+      };
+    
+      const validateForm = () => {
+        const { email, password } = formData;
+      
+        if (!("username" in formData)) {
+            return "Форма реєстрації очікує поле username.";
+          }
+      
+          const { username } = formData;
+      
+          if (!username || !email || !password) {
+            return "Будь ласка, заповніть усі поля.";
+          }
+      
+          if (!validateEmail(email)) {
+            return "Невірний формат email.";
+          }
+      
+          if (password.length < 6) {
+            return "Пароль має містити щонайменше 6 символів.";
+          }
+      
+        return null;
+      };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError(null);
+        setSuccess(null);
+
+        const validationError = validateForm();
+        if (validationError) {
+            setError(validationError);
+            return;
+        }
+
         if (editingUser) {
             await updateUserAdmin(editingUser.id, formData);
             setUsers(users.map((user) => (user.id === editingUser.id ? { ...user, ...formData } : user)));
@@ -67,6 +106,7 @@ function UserAdmin() {
                 <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="Username" required />
                 <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
                 <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="Номер телефону" required />
+                <input type="text" name="password" value={formData.password} onChange={handleChange} placeholder="Пароль" required />
                 <select name="roleId" value={formData.roleId} onChange={handleChange} required>
                     <option value="">Оберіть роль</option>
                     <option value="Full">Адмін</option>

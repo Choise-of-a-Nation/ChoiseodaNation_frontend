@@ -16,6 +16,50 @@ const LoginRegister: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
+  const validateEmail = (email: string) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
+  const validateForm = () => {
+    const { email, password } = formData;
+  
+    if (isRegistering) {
+      if (!("username" in formData)) {
+        return "Форма реєстрації очікує поле username.";
+      }
+  
+      const { username } = formData;
+  
+      if (!username || !email || !password || !confirmPassword) {
+        return "Будь ласка, заповніть усі поля.";
+      }
+  
+      if (!validateEmail(email)) {
+        return "Невірний формат email.";
+      }
+  
+      if (password.length < 6) {
+        return "Пароль має містити щонайменше 6 символів.";
+      }
+  
+      if (password !== confirmPassword) {
+        return "Паролі не збігаються.";
+      }
+  
+    } else {
+      if (!email || !password) {
+        return "Будь ласка, заповніть email і пароль.";
+      }
+  
+      if (!validateEmail(email)) {
+        return "Невірний формат email.";
+      }
+    }
+  
+    return null;
+  };
+  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -28,17 +72,20 @@ const LoginRegister: React.FC = () => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
-  
+
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     try {
       if (isRegistering) {
         const data = await registerUser(formData as UserDTO);
 
         if (data.accessToken && data.refreshToken) {
-          console.log("Tokens received:", data);
-  
           localStorage.setItem("accessToken", data.accessToken);
           localStorage.setItem("refreshToken", data.refreshToken);
-          
           setSuccess("Реєстрація успішна! Ви авторизовані.");
           window.location.href = "/";
         } else {
@@ -46,13 +93,10 @@ const LoginRegister: React.FC = () => {
         }
       } else {
         const data = await loginUser(formData as LoginDTO);
-  
+
         if (data.accessToken && data.refreshToken) {
-          console.log("Tokens received:", data);
-  
           localStorage.setItem("accessToken", data.accessToken);
           localStorage.setItem("refreshToken", data.refreshToken);
-          
           setSuccess("Вхід успішний! Ви авторизовані.");
           window.location.href = "/";
         } else {
@@ -91,50 +135,50 @@ const LoginRegister: React.FC = () => {
       <form onSubmit={handleSubmit}>
         {isRegistering && (
           <div className="input-group">
-          <label>Ім'я користувача</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="Ім'я користувача"
-            value={(formData as UserDTO).username || ""}
-            onChange={handleChange}
-            required
-          />
+            <label>Ім'я користувача</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Ім'я користувача"
+              value={(formData as UserDTO).username || ""}
+              onChange={handleChange}
+              required
+            />
           </div>
         )}
         <div className="input-group">
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="input-group">
-        <label>Пароль</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Пароль"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+          <label>Пароль</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Пароль"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
         </div>
         {isRegistering && (
           <div className="input-group">
-          <label>Підтвердження пароля</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Підтвердіть пароль"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-            required
-          />
+            <label>Підтвердження пароля</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Підтвердіть пароль"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              required
+            />
           </div>
         )}
         <button type="submit">
