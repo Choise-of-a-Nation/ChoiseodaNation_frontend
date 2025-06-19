@@ -137,7 +137,10 @@ const ProfileCom = () => {
                                 type="text" 
                                 name="firstName" 
                                 value={editedUser.firstName || ""} 
-                                onChange={handleInputChange} 
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/[^a-zA-Zа-яА-ЯїієґЇІЄҐ\s\-]/g, "");
+                                    setEditedUser(prev => prev ? { ...prev, firstName: value } : null);
+                                }}                            
                             />
                         </label>
                         <label>
@@ -146,7 +149,10 @@ const ProfileCom = () => {
                                 type="text" 
                                 name="lastName" 
                                 value={editedUser.lastName || ""} 
-                                onChange={handleInputChange} 
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/[^a-zA-Zа-яА-ЯїієґЇІЄҐ\s\-]/g, "");
+                                    setEditedUser(prev => prev ? { ...prev, lastName: value } : null);
+                                }}
                             />
                         </label>
                         <label>
@@ -169,11 +175,16 @@ const ProfileCom = () => {
                         </label>
                         <label>
                             <strong>Телефон:</strong>
-                            <input 
-                                type="phoneNumber" 
-                                name="phoneNumber" 
-                                value={editedUser.phoneNumber || ""} 
-                                onChange={handleInputChange} 
+                            <input
+                                type="tel"
+                                name="phoneNumber"
+                                value={editedUser.phoneNumber || ""}
+                                onChange={(e) => {
+                                    const cleaned = e.target.value.replace(/[^0-9+\-()\s]/g, "");
+                                    setEditedUser(prev => prev ? { ...prev, phoneNumber: cleaned } : null);
+                                }}
+                                pattern="[0-9+\-()\s]*"
+                                placeholder="+380..."
                             />
                         </label>
                         <label>
