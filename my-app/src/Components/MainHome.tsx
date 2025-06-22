@@ -1,14 +1,26 @@
+import { useState } from 'react';
 import './MainHome.css'
 import { useNavigate } from 'react-router-dom';
 
 function MainHome()
 {
     const navigate = useNavigate();
+    const [message, setMessage] = useState("");
+
+    const handlePlay = () => {
+        const token = localStorage.getItem("accessToken");
+        if (token) {
+            const gameUrl = `https://choise-of-a-nation-game-web.vercel.app/?token=${encodeURIComponent(token)}`;
+            window.open(gameUrl, "_blank");
+        } else {
+            setMessage("Помилка: токен не знайдено");
+        }
+    };
     
     const handleButtonClick = () => {
         const token = localStorage.getItem("accessToken"); 
         if (token) {
-          window.location.href = "https://choise-of-a-nation-game-web.vercel.app/";
+          handlePlay();
         } else {
           window.location.href = "/sign"; 
         }
